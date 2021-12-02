@@ -18,20 +18,16 @@ const OnBoardScreen = ({navigation}) => {
         source={require('../../assets/onboardImage.jpg')}>
         <View style={style.details}>
           <Text style={{color: COLORS.white, fontSize: 35, fontWeight: 'bold'}}>
-            Discover
-          </Text>
-          <Text style={{color: COLORS.white, fontSize: 35, fontWeight: 'bold'}}>
-            world with us
+            Welcome to TravelGo
           </Text>
           <Text style={{color: COLORS.white, lineHeight: 25, marginTop: 15}}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut
-            sem non erat vehicula dignissim. Morbi eget congue ante, feugiat.
+          Mau holiday tapi bingung pesan dimana? di TravelGo aja!
           </Text>
           <TouchableOpacity
             activeOpacity={0.8}
             onPress={() => navigation.navigate('HomeScreen')}>
             <View style={style.btn}>
-              <Text style={{fontWeight: 'bold'}}>Get Started</Text>
+              <Text style={{fontWeight: 'bold'}}>Ayo Mulai!</Text>
             </View>
           </TouchableOpacity>
         </View>
