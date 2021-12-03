@@ -14,14 +14,14 @@ const OnBoardScreen = ({navigation}) => {
     <View style={{flex: 1}}>
       <StatusBar translucent backgroundColor="rgba(0,0,0,0)" />
       <ImageBackground
-        style={{flex: 1}}
-        source={require('../../assets/onboardImage.jpg')}>
+        style={{flex: 1,}}
+        source={require('../../assets/location2.jpg')}>
         <View style={style.details}>
           <Text style={{color: COLORS.white, fontSize: 35, fontWeight: 'bold'}}>
             Welcome to TravelGo
           </Text>
           <Text style={{color: COLORS.white, lineHeight: 25, marginTop: 15}}>
-          Mau holiday tapi bingung pesan dimana? di TravelGo aja!
+            Mau holiday tapi bingung pesan dimana? di TravelGo aja!
           </Text>
           <TouchableOpacity
             activeOpacity={0.8}
@@ -39,7 +39,7 @@ const OnBoardScreen = ({navigation}) => {
 const style = StyleSheet.create({
   details: {
     height: '50%',
-    bottom: 0,
+    bottom: -60,  
     position: 'absolute',
     paddingHorizontal: 40,
   },
