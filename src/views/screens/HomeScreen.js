@@ -12,17 +12,37 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/AntDesign';
 import COLORS from '../../consts/colors';
 import places from '../../consts/places';
 const {width} = Dimensions.get('screen');
+
 const HomeScreen = ({navigation}) => {
+  const categoryIcons = [
+    <Icon name="flight" size={25} color={COLORS.primary} />,
+    <Icon name="beach-access" size={25} color={COLORS.primary} />,
+    <Icon name="near-me" size={25} color={COLORS.primary} />,
+    <Icon name="place" size={25} color={COLORS.primary} />,
+  ];
+
+  const ListCategories = () => {
+    return (
+      <View style={style.categoryContainer}>
+        {categoryIcons.map((icon, index) => (
+          <View key={index} style={style.iconContainer}>
+            {icon}
+          </View>
+        ))}
+      </View>
+    );
+  };
 
   const Card = ({place}) => {
     return (
       <TouchableOpacity
         activeOpacity={0.8}
         onPress={() => navigation.navigate('DetailsScreen', place)}>
-        <ImageBackground style={style.cardImage} source={place.image}>
+        <ImageBackground  style={style.cardImage} source={place.image}>
           <Text
             style={{
               color: COLORS.white,
@@ -92,6 +112,7 @@ const HomeScreen = ({navigation}) => {
       </ImageBackground>
     );
   };
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
       <StatusBar translucent={false} backgroundColor={COLORS.primary} />
@@ -107,19 +128,19 @@ const HomeScreen = ({navigation}) => {
             paddingHorizontal: 20,
           }}>
           <View style={{flex: 1}}>
-            <Text style={style.headerTitle}>Explore the</Text>
-            <Text style={style.headerTitle}>beautiful places</Text>
+            <Text style={style.headerTitle}>Hallo!</Text>
+            <Text style={style.headerTitle}>Mau kemana?</Text>
             <View style={style.inputContainer}>
               <Icon name="search" size={28} />
               <TextInput
-                placeholder="Search place"
+                placeholder="Mau kemana kira kira?"
                 style={{color: COLORS.grey}}
               />
             </View>
           </View>
         </View>
         <ListCategories />
-        <Text style={style.sectionTitle}>Places</Text>
+        <Text style={style.sectionTitle}>Tujuan Populer</Text>
         <View>
           <FlatList
             contentContainerStyle={{paddingLeft: 20}}
@@ -128,7 +149,7 @@ const HomeScreen = ({navigation}) => {
             data={places}
             renderItem={({item}) => <Card place={item} />}
           />
-          <Text style={style.sectionTitle}>Recommended</Text>
+          <Text style={style.sectionTitle}>Rekomendasi Terbaik</Text>
           <FlatList
             snapToInterval={width - 20}
             contentContainerStyle={{paddingLeft: 20, paddingBottom: 20}}
@@ -195,6 +216,8 @@ const style = StyleSheet.create({
     padding: 10,
     overflow: 'hidden',
     borderRadius: 10,
+    opacity: 0.8,
+    backgroundColor: 'black'
   },
   rmCardImage: {
     width: width - 40,
@@ -204,5 +227,14 @@ const style = StyleSheet.create({
     overflow: 'hidden',
     padding: 10,
   },
+  overlay: {
+    flex: 1,
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    opacity: 0.5,
+    backgroundColor: 'black',
+    width: width
+  } 
 });
 export default HomeScreen;
