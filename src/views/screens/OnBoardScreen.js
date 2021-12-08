@@ -7,11 +7,10 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
-// import {Colors} from 'react-native/Libraries/NewAppScreen';
 import COLORS from '../../consts/colors';
 const OnBoardScreen = ({navigation}) => {
   return (
-    <View style={{flex: 1}}>
+    <View style={style.overlay, {flex: 1,}}>
       <StatusBar translucent backgroundColor="rgba(0,0,0,0)" />
       <ImageBackground
         style={{flex: 1,}}
@@ -52,5 +51,14 @@ const style = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  overlay: {
+    flex: 1,
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    opacity: 1,
+    backgroundColor: 'black',
+    width: 100
+  }
 });
 export default OnBoardScreen;

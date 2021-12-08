@@ -11,18 +11,21 @@ import {
   FlatList,
   Dimensions,
   TouchableOpacity,
+  TouchableOpacityBase,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
+import Icons from 'react-native-vector-icons/EvilIcons';
+import Iconmenu from 'react-native-vector-icons/Entypo';
 import COLORS from '../../consts/colors';
 import places from '../../consts/places';
 const {width} = Dimensions.get('screen');
 
 const HomeScreen = ({navigation}) => {
   const categoryIcons = [
-    <Icon name="flight" size={25} color={COLORS.primary} />,
-    <Icon name="beach-access" size={25} color={COLORS.primary} />,
-    <Icon name="near-me" size={25} color={COLORS.primary} />,
-    <Icon name="place" size={25} color={COLORS.primary} />,
+    <Iconmenu name="aircraft" size={25} color={COLORS.primary} />,
+    <Iconmenu name="location" size={25} color={COLORS.primary} />,
+    <Iconmenu name="home" size={25} color={COLORS.primary} />,
+    <Iconmenu name="aircraft-landing" size={25} color={COLORS.primary} />,
   ];
 
   const ListCategories = () => {
@@ -60,13 +63,13 @@ const HomeScreen = ({navigation}) => {
               alignItems: 'flex-end',
             }}>
             <View style={{flexDirection: 'row'}}>
-              <Icon name="place" size={20} color={COLORS.white} />
+              <Iconmenu name="aircraft" size={20} color={COLORS.white} />
               <Text style={{marginLeft: 5, color: COLORS.white}}>
                 {place.location}
               </Text>
             </View>
             <View style={{flexDirection: 'row'}}>
-              <Icon name="star" size={20} color={COLORS.white} />
+              <Icon name="staro" size={20} color={COLORS.white} />
               <Text style={{marginLeft: 5, color: COLORS.white}}>5.0</Text>
             </View>
           </View>
@@ -95,13 +98,13 @@ const HomeScreen = ({navigation}) => {
           }}>
           <View style={{width: '100%', flexDirection: 'row', marginTop: 10}}>
             <View style={{flexDirection: 'row'}}>
-              <Icon name="place" size={22} color={COLORS.white} />
+              <Iconmenu name="aircraft" size={20} color={COLORS.white} />
               <Text style={{color: COLORS.white, marginLeft: 5}}>
                 {place.location}
               </Text>
             </View>
             <View style={{flexDirection: 'row'}}>
-              <Icon name="star" size={22} color={COLORS.white} />
+              <Icon name="staro" size={22} color={COLORS.white} style={{marginLeft: 10}}/>
               <Text style={{color: COLORS.white, marginLeft: 5}}>5.0</Text>
             </View>
           </View>
@@ -117,8 +120,10 @@ const HomeScreen = ({navigation}) => {
     <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
       <StatusBar translucent={false} backgroundColor={COLORS.primary} />
       <View style={style.header}>
-        <Icon name="sort" size={28} color={COLORS.white} />
-        <Icon name="notifications-none" size={28} color={COLORS.white} />
+        <TouchableOpacity onPress={navigation.goBack}>
+          <Icon name="left" size={28} color={COLORS.white} />
+        </TouchableOpacity>
+        <Icon name="wallet" size={28} color={COLORS.white} />
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View
@@ -131,7 +136,7 @@ const HomeScreen = ({navigation}) => {
             <Text style={style.headerTitle}>Hallo!</Text>
             <Text style={style.headerTitle}>Mau kemana?</Text>
             <View style={style.inputContainer}>
-              <Icon name="search" size={28} />
+              <Icons name="search" size={28} />
               <TextInput
                 placeholder="Mau kemana kira kira?"
                 style={{color: COLORS.grey}}
