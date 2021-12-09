@@ -1,0 +1,50 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Denpasar",
+      "location": "Bali",
+      "details": "jelajahi berbagai paket menarik di Bali"
+    },
+    {
+      "id": 2,
+      "name": "Yogyakarta",
+      "location": "Yogyakarta",
+      "details": "jelajahi berbagai paket menarik di Yogyakarta"
+    },
+    {
+      "id": 3,
+      "name": "Tokyo",
+      "location": "Jepang",
+      "details": "jelajahi berbagai paket menarik di Tokyo"
+    },
+    {
+      "id": 4,
+      "name": "Sydney",
+      "location": "Australia",
+      "details": "jelajahi berbagai paket menarik di Sydney"
+    },
+    {
+      "id": 5,
+      "name": "Kualalumpur",
+      "location": "Malaysia",
+      "details": "jelajahi berbagai paket menarik di Kualalumpur"
+    },
+    {
+      "id": 6,
+      "name": "Singapore",
+      "location": "Singapore",
+      "details": "jelajahi berbagai paket menarik di Singapore"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

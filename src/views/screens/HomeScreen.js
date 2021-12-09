@@ -11,16 +11,25 @@ import {
   FlatList,
   Dimensions,
   TouchableOpacity,
-  TouchableOpacityBase,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icons from 'react-native-vector-icons/EvilIcons';
 import Iconmenu from 'react-native-vector-icons/Entypo';
+import axios from 'axios';
 import COLORS from '../../consts/colors';
 import places from '../../consts/places';
 const {width} = Dimensions.get('screen');
 
 const HomeScreen = ({navigation}) => {
+  const getData = async() => {
+    try {
+      const res = await axios.get('http://localhost:3000/products')
+      console.log(res, getData)
+    } catch (error) {
+      return;
+    }
+  };
+
   const categoryIcons = [
     <Iconmenu name="aircraft" size={25} color={COLORS.primary} />,
     <Iconmenu name="location" size={25} color={COLORS.primary} />,
@@ -40,7 +49,7 @@ const HomeScreen = ({navigation}) => {
     );
   };
 
-  const Card = ({place}) => {
+  const Card = ({place, getData}) => {
     return (
       <TouchableOpacity
         activeOpacity={0.8}
@@ -53,7 +62,7 @@ const HomeScreen = ({navigation}) => {
               fontWeight: 'bold',
               marginTop: 10,
             }}>
-            {place.name}
+            {getData.name}
           </Text>
           <View
             style={{
@@ -65,7 +74,7 @@ const HomeScreen = ({navigation}) => {
             <View style={{flexDirection: 'row'}}>
               <Iconmenu name="aircraft" size={20} color={COLORS.white} />
               <Text style={{marginLeft: 5, color: COLORS.white}}>
-                {place.location}
+                {getData.location}
               </Text>
             </View>
             <View style={{flexDirection: 'row'}}>
@@ -78,7 +87,7 @@ const HomeScreen = ({navigation}) => {
     );
   };
 
-  const RecommendedCard = ({place}) => {
+  const RecommendedCard = ({place, getData}) => {
     return (
       <ImageBackground style={style.rmCardImage} source={place.image}>
         <Text
@@ -120,9 +129,9 @@ const HomeScreen = ({navigation}) => {
     <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
       <StatusBar translucent={false} backgroundColor={COLORS.primary} />
       <View style={style.header}>
-        <TouchableOpacity onPress={navigation.goBack}>
+        {/* <TouchableOpacity onPress={navigation.goBack}>
           <Icon name="left" size={28} color={COLORS.white} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <Icon name="wallet" size={28} color={COLORS.white} />
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -174,7 +183,7 @@ const style = StyleSheet.create({
     paddingVertical: 20,
     paddingHorizontal: 20,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     backgroundColor: COLORS.primary,
   },
   headerTitle: {
