@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import OnBoardScreen from '../views/screens/OnBoardScreen';
 import HomeScreen from '../views/screens/HomeScreen';
 import DetailsScreen from '../views/screens/DetailsScreen';
+import Wallet from '../views/screens/Wallet';
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Stack.Screen name="OnBoardScreen" component={OnBoardScreen} />
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
+        <Stack.Screen name="Wallet" component={Wallet} />
       </Stack.Navigator>
     </NavigationContainer>
   );
