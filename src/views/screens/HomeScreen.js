@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -24,11 +24,14 @@ const HomeScreen = ({navigation}) => {
   const getData = async() => {
     try {
       const res = await axios.get('http://localhost:3000/products')
-      console.log(res, getData)
+      console.log(res)
     } catch (error) {
       return;
     }
   };
+  useEffect(() => {
+    getData()
+  }, [])
 
   const categoryIcons = [
     <Iconmenu name="aircraft" size={25} color={COLORS.primary} />,
@@ -49,7 +52,7 @@ const HomeScreen = ({navigation}) => {
     );
   };
 
-  const Card = ({place, getData}) => {
+  const Card = ({place}) => {
     return (
       <TouchableOpacity
         activeOpacity={0.8}
@@ -62,7 +65,7 @@ const HomeScreen = ({navigation}) => {
               fontWeight: 'bold',
               marginTop: 10,
             }}>
-            {getData.name}
+            {place.name}
           </Text>
           <View
             style={{
@@ -74,7 +77,7 @@ const HomeScreen = ({navigation}) => {
             <View style={{flexDirection: 'row'}}>
               <Iconmenu name="aircraft" size={20} color={COLORS.white} />
               <Text style={{marginLeft: 5, color: COLORS.white}}>
-                {getData.location}
+                {place.location}
               </Text>
             </View>
             <View style={{flexDirection: 'row'}}>
