@@ -132,10 +132,10 @@ const HomeScreen = ({navigation}) => {
     <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
       <StatusBar translucent={false} backgroundColor={COLORS.primary} />
       <View style={style.header}>
-        {/* <TouchableOpacity onPress={navigation.goBack}>
-          <Icon name="left" size={28} color={COLORS.white} />
-        </TouchableOpacity> */}
-        <Icon name="wallet" size={28} color={COLORS.white} />
+        <TouchableOpacity onPress={() => navigation.navigate('Wallet')}>
+          <Icon name="wallet" size={28} color={COLORS.white} />
+        </TouchableOpacity>
+        {/* <Icon name="wallet" size={28} color={COLORS.white} /> */}
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View
