@@ -6,16 +6,13 @@ import {
   StyleSheet,
   View,
   Text,
-  TextInput,
-  ImageBackground,
-  FlatList,
+  ButtonIcon,
+  // ImageBackground,
   Dimensions,
-  TouchableOpacity,
+  // TouchableOpacity,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
-import Icons from 'react-native-vector-icons/EvilIcons';
+// import Icon from 'react-native-vector-icons/AntDesign';
 import COLORS from '../../consts/colors';
-import places from '../../consts/places';
 const {width} = Dimensions.get('screen');
 
 const Wallet = () => {
@@ -24,53 +21,73 @@ const Wallet = () => {
       <StatusBar translucent={false} backgroundColor={COLORS.primary} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text>Wallet</Text>
-        <TouchableOpacity
-        activeOpacity={0.8}
-        onPress={() => navigation.navigate('DetailsScreen', place)}>
-        <ImageBackground  style={style.cardImage} source={place.image}>
-          <Text
-            style={{
-              color: COLORS.white,
-              fontSize: 20,
-              fontWeight: 'bold',
-              marginTop: 10,
-            }}>
-            {place.name}
-          </Text>
-          <View
-            style={{
-              flex: 1,
-              justifyContent: 'space-between',
-              flexDirection: 'row',
-              alignItems: 'flex-end',
-            }}>
-            <View style={{flexDirection: 'row'}}>
-              <Iconmenu name="aircraft" size={20} color={COLORS.white} />
-              <Text style={{marginLeft: 5, color: COLORS.white}}>
-                {place.location}
-              </Text>
+        <View style={styles.container}>
+          <View style={styles.informasiSaldo}>
+            <View style={styles.text}>
+              <Text style={styles.labelSaldo}>Saldo :</Text>
+              <Text style={styles.valueSaldo}>Rp. 100.000</Text>
             </View>
-            <View style={{flexDirection: 'row'}}>
-              <Icon name="staro" size={20} color={COLORS.white} />
-              <Text style={{marginLeft: 5, color: COLORS.white}}>5.0</Text>
+            <View style={styles.text}>
+              <Text style={styles.labelPoint}>Antar Point :</Text>
+              <Text style={styles.valuePoint}>100 points</Text>
             </View>
           </View>
-        </ImageBackground>
-      </TouchableOpacity>
+          <View style={styles.buttonAksi}>
+            <ButtonIcon title="Add Saldo" />
+            <Gap width={10} />
+            <ButtonIcon title="Get Point" />
+          </View>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
 };
 
 const style = StyleSheet.create({
-  overlay: {
+  container: {
+    backgroundColor: 'white',
+    padding: 17,
+    marginHorizontal: 30,
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+    elevation: 7,
+    marginTop: -windowHeight * 0.05,
+    flexDirection: 'row',
+  },
+  text: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  informasiSaldo: {
+    width: '60%',
+  },
+  labelSaldo: {
+    fontSize: 20,
+    fontFamily: 'TitilliumWeb-Regular',
+  },
+  valueSaldo: {
+    fontSize: 20,
+    fontFamily: 'TitilliumWeb-Bold',
+  },
+  labelPoint: {
+    fontSize: 12,
+    fontFamily: 'TitilliumWeb-Regular',
+  },
+  valuePoint: {
+    fontSize: 12,
+    fontFamily: 'TitilliumWeb-Bold',
+    color: WARNA_UTAMA,
+  },
+  buttonAksi: {
     flex: 1,
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    opacity: 0.5,
-    backgroundColor: 'black',
-    width: width
-  } 
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  }, 
 });
 export default Wallet;
