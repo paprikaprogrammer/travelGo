@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Component } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -18,6 +18,8 @@ import Iconmenu from 'react-native-vector-icons/Entypo';
 import axios from 'axios';
 import COLORS from '../../consts/colors';
 import places from '../../consts/places';
+import { WebView } from 'react-native-webview';
+
 const {width} = Dimensions.get('screen');
 
 const HomeScreen = ({navigation}) => {

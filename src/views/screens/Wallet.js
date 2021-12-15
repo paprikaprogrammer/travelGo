@@ -1,17 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   SafeAreaView,
-  ScrollView,
   StatusBar,
   StyleSheet,
   View,
   Text,
-  ButtonIcon,
-  // ImageBackground,
   Dimensions,
-  // TouchableOpacity,
 } from 'react-native';
-// import Icon from 'react-native-vector-icons/AntDesign';
+import { WebView } from 'react-native-webview';
 import COLORS from '../../consts/colors';
 const {width} = Dimensions.get('screen');
 
@@ -19,8 +15,7 @@ const Wallet = () => {
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
       <StatusBar translucent={false} backgroundColor={COLORS.primary} />
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <Text>Wallet</Text>
+      <Text style={styles.txt}>e-Wallet</Text>
         <View style={styles.container}>
           <View style={styles.informasiSaldo}>
             <View style={styles.text}>
@@ -32,18 +27,20 @@ const Wallet = () => {
               <Text style={styles.valuePoint}>100 points</Text>
             </View>
           </View>
-          <View style={styles.buttonAksi}>
-            <ButtonIcon title="Add Saldo" />
-            <Gap width={10} />
-            <ButtonIcon title="Get Point" />
-          </View>
         </View>
-      </ScrollView>
+      <Webs/>
     </SafeAreaView>
   );
 };
 
-const style = StyleSheet.create({
+class Webs extends Component {
+  render() {
+      return <WebView
+      source={{ uri: 'https://docs.midtrans.com/en/snap/overview' }} />;
+  }
+}
+
+const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     padding: 17,
@@ -57,7 +54,6 @@ const style = StyleSheet.create({
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
     elevation: 7,
-    marginTop: -windowHeight * 0.05,
     flexDirection: 'row',
   },
   text: {
@@ -82,12 +78,18 @@ const style = StyleSheet.create({
   valuePoint: {
     fontSize: 12,
     fontFamily: 'TitilliumWeb-Bold',
-    color: WARNA_UTAMA,
   },
   buttonAksi: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-end',
   }, 
+  txt: {
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+    margin: 20,
+    justifyContent: 'center',
+  }
 });
 export default Wallet;

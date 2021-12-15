@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../../consts/colors';
 
 const DetailsScreen = ({navigation, route}) => {
-  const { isOpen, onOpen, onClose } = useDisclose()
+  // const { isOpen, onOpen, onClose } = useDisclose()
   const place = route.params;
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
@@ -52,13 +52,13 @@ const DetailsScreen = ({navigation, route}) => {
             Booking Sekarang
           </Text>
         </View>
-        <Actionsheet isOpen={isOpen} onClose={onClose}>
+        {/* <Actionsheet isOpen={isOpen} onClose={onClose}>
           <Actionsheet.Content>
             <Actionsheet.Item>Booking 1 Hari</Actionsheet.Item>
             <Actionsheet.Item>Booking 2 Hari</Actionsheet.Item>
             <Actionsheet.Item>Booking 3 hari</Actionsheet.Item>
           </Actionsheet.Content>
-        </Actionsheet>
+        </Actionsheet> */}
       </View>
     </SafeAreaView>
   );
