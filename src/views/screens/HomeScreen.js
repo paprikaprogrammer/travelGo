@@ -46,9 +46,13 @@ const HomeScreen = ({navigation}) => {
     return (
       <View style={style.categoryContainer}>
         {categoryIcons.map((icon, index) => (
-          <View key={index} style={style.iconContainer}>
+          <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={() => navigation.navigate('DirectWebview')}>
+          <View  key={index} style={style.iconContainer}>
             {icon}
           </View>
+          </TouchableOpacity>
         ))}
       </View>
     );

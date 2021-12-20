@@ -1,20 +1,14 @@
 import React, {Component} from 'react';
-import {
-  View,
-  WebView
-} from 'react-native';
+// import {
+//   // View,
+//   WebView
+// } from 'react-native';
 
-// import { WebView } from 'react-native-webview';
+import { WebView } from 'react-native-webview';
 
-const webviews = {
+class Webs extends Component {
   render() {
-    return (
-        <View style={{ flex: 0, paddingTop:20, flexDirection:'row', justifyContent: 'center',  backgroundColor: 'white'}}>
-            {/* <WebView source={{uri: 'https://shopee.co.id/'}} /> */}
-            hai
-        </View>
-    );
+      return <WebView
+      source={{ uri: 'https://docs.midtrans.com/en/snap/overview' }} />;
   }
 }
-
-export default webviews;
