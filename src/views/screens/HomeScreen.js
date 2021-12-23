@@ -1,4 +1,4 @@
-import React, { useEffect, Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -18,23 +18,10 @@ import Iconmenu from 'react-native-vector-icons/Entypo';
 import axios from 'axios';
 import COLORS from '../../consts/colors';
 import places from '../../consts/places';
-import { WebView } from 'react-native-webview';
-
+import RecommendedCard from '../../views/screens/RecommendedCard'
 const {width} = Dimensions.get('screen');
 
 const HomeScreen = ({navigation}) => {
-  const getData = async() => {
-    try {
-      const res = await axios.get('http://localhost:3000/products')
-      console.log(res)
-    } catch (error) {
-      return;
-    }
-  };
-  useEffect(() => {
-    getData()
-  }, [])
-
   const categoryIcons = [
     <Iconmenu name="aircraft" size={25} color={COLORS.primary} />,
     <Iconmenu name="location" size={25} color={COLORS.primary} />,
@@ -96,44 +83,6 @@ const HomeScreen = ({navigation}) => {
     );
   };
 
-  const RecommendedCard = ({place, getData}) => {
-    return (
-      <ImageBackground style={style.rmCardImage} source={place.image}>
-        <Text
-          style={{
-            color: COLORS.white,
-            fontSize: 22,
-            fontWeight: 'bold',
-            marginTop: 10,
-          }}>
-          {place.name}
-        </Text>
-        <View
-          style={{
-            flex: 1,
-            justifyContent: 'space-between',
-            alignItems: 'flex-end',
-          }}>
-          <View style={{width: '100%', flexDirection: 'row', marginTop: 10}}>
-            <View style={{flexDirection: 'row'}}>
-              <Iconmenu name="aircraft" size={20} color={COLORS.white} />
-              <Text style={{color: COLORS.white, marginLeft: 5}}>
-                {place.location}
-              </Text>
-            </View>
-            <View style={{flexDirection: 'row'}}>
-              <Icon name="staro" size={22} color={COLORS.white} style={{marginLeft: 10}}/>
-              <Text style={{color: COLORS.white, marginLeft: 5}}>5.0</Text>
-            </View>
-          </View>
-          <Text style={{color: COLORS.white, fontSize: 13}}>
-            {place.details}
-          </Text>
-        </View>
-      </ImageBackground>
-    );
-  };
-
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
       <StatusBar translucent={false} backgroundColor={COLORS.primary} />
@@ -141,7 +90,6 @@ const HomeScreen = ({navigation}) => {
         <TouchableOpacity onPress={() => navigation.navigate('Wallet')}>
           <Icon name="wallet" size={28} color={COLORS.white} />
         </TouchableOpacity>
-        {/* <Icon name="wallet" size={28} color={COLORS.white} /> */}
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View
@@ -173,14 +121,7 @@ const HomeScreen = ({navigation}) => {
             renderItem={({item}) => <Card place={item} />}
           />
           <Text style={style.sectionTitle}>Rekomendasi Terbaik</Text>
-          <FlatList
-            snapToInterval={width - 20}
-            contentContainerStyle={{paddingLeft: 20, paddingBottom: 20}}
-            showsHorizontalScrollIndicator={false}
-            horizontal
-            data={places}
-            renderItem={({item}) => <RecommendedCard place={item} />}
-          />
+          <RecommendedCard />
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -6,6 +6,7 @@ import HomeScreen from '../views/screens/HomeScreen';
 import DetailsScreen from '../views/screens/DetailsScreen';
 import Wallet from '../views/screens/Wallet';
 import DirectWebview from '../views/screens/DirectWebview';
+import RecommendedCard from '../views/screens/RecommendedCard';
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
         <Stack.Screen name="Wallet" component={Wallet} />
         <Stack.Screen name="DirectWebview" component={DirectWebview} />
+        <Stack.Screen name="RecommendedCard" component={RecommendedCard} />
       </Stack.Navigator>
     </NavigationContainer>
   );

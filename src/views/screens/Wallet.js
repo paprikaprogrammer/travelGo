@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState, Component } from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -9,15 +9,47 @@ import {
 } from 'react-native';
 import { WebView } from 'react-native-webview';
 import COLORS from '../../consts/colors';
+import axios from 'axios';
 const {width} = Dimensions.get('screen');
 
 const Wallet = () => {
+  const[data, setData]=useState()
+  const getData = async() => {
+    try {
+      // call api method get places
+      const res = await axios.get('https://mocki.io/v1/ee56562c-f13c-4c7d-a254-5771918ed362')
+      console.log(res, "api saldo")
+      console.log(res.data, "data saldo")
+      console.log(res.data[0].saldo)
+      setData(res.data)
+    } catch (error) {
+      return;
+    }
+  };
+  useEffect(() => {
+    getData()
+  }, [])
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
       <StatusBar translucent={false} backgroundColor={COLORS.primary} />
       <Text style={styles.txt}>e-Wallet</Text>
         <View style={styles.container}>
-          <View style={styles.informasiSaldo}>
+          {data && data.map((item,i)=>{
+            return <>
+              <View style={styles.informasiSaldo}>
+                <View style={styles.text}>
+                  <Text style={styles.labelSaldo}>Saldo :</Text>
+                  <Text style={styles.valueSaldo}>Rp. {item.saldo}</Text>
+                </View>
+                <View style={styles.text}>
+                  <Text style={styles.labelPoint}>Antar Point :</Text>
+                  <Text style={styles.valuePoint}>{item.point} points</Text>
+                </View>
+              </View>
+            </>
+          })}
+          {/* <View style={styles.informasiSaldo}>
             <View style={styles.text}>
               <Text style={styles.labelSaldo}>Saldo :</Text>
               <Text style={styles.valueSaldo}>Rp. 100.000</Text>
@@ -26,7 +58,7 @@ const Wallet = () => {
               <Text style={styles.labelPoint}>Antar Point :</Text>
               <Text style={styles.valuePoint}>100 points</Text>
             </View>
-          </View>
+          </View> */}
         </View>
       <Webs/>
     </SafeAreaView>
@@ -93,3 +125,4 @@ const styles = StyleSheet.create({
   }
 });
 export default Wallet;
+
