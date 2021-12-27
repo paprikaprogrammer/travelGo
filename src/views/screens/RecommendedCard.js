@@ -6,7 +6,7 @@ import Iconmenu from 'react-native-vector-icons/Entypo';
 import Icon from 'react-native-vector-icons/AntDesign';
 const {width} = Dimensions.get('screen');
 
-export default class Contoh extends Component {
+export default class RecommendedCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,7 +24,7 @@ export default class Contoh extends Component {
   // get api user
   getRecomen = async () => {
     try {
-      const response = await Axios.get(`https://mocki.io/v1/c33665da-733c-4bfb-8d64-9552ba63e018`)
+      const response = await Axios.get(`https://mocki.io/v1/814e74cf-17b8-456d-83f3-6c891d328c8f`)
       this.setState({ isError: false, isLoading: false, data: response.data })
     } catch (error) {
       this.setState({ isLoading: false, isError: true })
@@ -61,7 +61,7 @@ export default class Contoh extends Component {
         horizontal
         data={this.state.data}
         renderItem={({ item }) =>
-        <ImageBackground style={styles.rmCardImage} source={require('../../assets/bali.jpeg')}>
+        <ImageBackground style={styles.rmCardImage} source={{uri: `${item.image}`}}>
             <Text style={styles.textTitleRm}> {item.name}</Text>
             <View
             style={{

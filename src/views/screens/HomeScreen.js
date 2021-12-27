@@ -19,6 +19,7 @@ import axios from 'axios';
 import COLORS from '../../consts/colors';
 import places from '../../consts/places';
 import RecommendedCard from '../../views/screens/RecommendedCard'
+import PlaceCard from '../../component/PlaceCard';
 const {width} = Dimensions.get('screen');
 
 const HomeScreen = ({navigation}) => {
@@ -113,13 +114,14 @@ const HomeScreen = ({navigation}) => {
         <ListCategories />
         <Text style={style.sectionTitle}>Tujuan Populer</Text>
         <View>
-          <FlatList
+          {/* <FlatList
             contentContainerStyle={{paddingLeft: 20}}
             horizontal
             showsHorizontalScrollIndicator={false}
             data={places}
             renderItem={({item}) => <Card place={item} />}
-          />
+          /> */}
+          <PlaceCard />
           <Text style={style.sectionTitle}>Rekomendasi Terbaik</Text>
           <RecommendedCard />
         </View>
