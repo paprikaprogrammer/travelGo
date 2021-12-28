@@ -114,14 +114,14 @@ const HomeScreen = ({navigation}) => {
         <ListCategories />
         <Text style={style.sectionTitle}>Tujuan Populer</Text>
         <View>
-          {/* <FlatList
+          <FlatList
             contentContainerStyle={{paddingLeft: 20}}
             horizontal
             showsHorizontalScrollIndicator={false}
             data={places}
             renderItem={({item}) => <Card place={item} />}
-          /> */}
-          <PlaceCard />
+          />
+          {/* <PlaceCard /> */}
           <Text style={style.sectionTitle}>Rekomendasi Terbaik</Text>
           <RecommendedCard />
         </View>
