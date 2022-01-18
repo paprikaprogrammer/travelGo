@@ -8,6 +8,8 @@ import Wallet from '../views/screens/Wallet';
 import DirectWebview from '../views/screens/DirectWebview';
 import RecommendedCard from '../views/screens/RecommendedCard';
 import PlaceCard from '../component/PlaceCard'
+import Pesawat from '../views/screens/Pesawat'
+import Hotel from '../views/screens/Hotel'
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
         <Stack.Screen name="DirectWebview" component={DirectWebview} />
         <Stack.Screen name="RecommendedCard" component={RecommendedCard} />
         <Stack.Screen name="PlaceCard" component={PlaceCard} />
+        <Stack.Screen name="Pesawat" component={Pesawat} />
+        <Stack.Screen name="Hotel" component={Hotel} />
       </Stack.Navigator>
     </NavigationContainer>
   );
