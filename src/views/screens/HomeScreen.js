@@ -91,10 +91,10 @@ const HomeScreen = ({navigation}) => {
         </View>
         <View style={style.categoryMenu}>
           <CategoryMenu onPress={() => navigation.navigate('Pesawat')} image={require('../../assets/pesawat.png')} title='Pesawat'/>
-          <CategoryMenu  onPress={() => navigation.navigate('Hotel')} image={require('../../assets/hotel.png')} title='Hotel'/>
-          <CategoryMenu image={require('../../assets/todo.png')} title='To Do'/>
-          <CategoryMenu image={require('../../assets/kereta.png')} title='Kereta'/>
-          <CategoryMenu image={require('../../assets/eat.png')} title='Eat'/>
+          <CategoryMenu onPress={() => navigation.navigate('Hotel')} image={require('../../assets/hotel.png')} title='Hotel'/>
+          <CategoryMenu onPress={() => navigation.navigate('Todo')} image={require('../../assets/todo.png')} title='To Do'/>
+          <CategoryMenu onPress={() => navigation.navigate('Kereta')} image={require('../../assets/kereta.png')} title='Kereta'/>
+          <CategoryMenu onPress={() => navigation.navigate('Eat')} image={require('../../assets/eat.png')} title='Eat'/>
           <CategoryMenu image={require('../../assets/event.png')} title='Event'/>
           <CategoryMenu image={require('../../assets/mobil.png')} title='Sewa Mobil'/>
           <CategoryMenu image={require('../../assets/promo.png')} title='Promo'/>

@@ -10,6 +10,9 @@ import RecommendedCard from '../views/screens/RecommendedCard';
 import PlaceCard from '../component/PlaceCard'
 import Pesawat from '../views/screens/Pesawat'
 import Hotel from '../views/screens/Hotel'
+import Todo from '../views/screens/Todo'
+import Kereta from '../views/screens/Kereta'
+import Eat from '../views/screens/Eat'
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -25,6 +28,9 @@ function App() {
         <Stack.Screen name="PlaceCard" component={PlaceCard} />
         <Stack.Screen name="Pesawat" component={Pesawat} />
         <Stack.Screen name="Hotel" component={Hotel} />
+        <Stack.Screen name="Todo" component={Todo} />
+        <Stack.Screen name="Kereta" component={Kereta} />
+        <Stack.Screen name="Eat" component={Eat} />
       </Stack.Navigator>
     </NavigationContainer>
   );
