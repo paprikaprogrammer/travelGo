@@ -55,7 +55,6 @@ export default class RecommendedCard extends Component {
     // data finish load
     return (
       <FlatList
-        snapToInterval={width - 20}
         contentContainerStyle={{paddingLeft: 20, paddingBottom: 20}}
         showsHorizontalScrollIndicator={false}
         horizontal

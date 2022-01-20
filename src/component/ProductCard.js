@@ -20,7 +20,7 @@ const ProductCard = (props) => {
             </View>
         </View>
         <View style={style.wrapDisc}>
-            <Text style={{fontSize:11}}>Diskon {props.diskon}</Text>
+            <Text style={{fontSize:11}}>{props.diskon}</Text>
         </View>
     </View>
   );
@@ -31,14 +31,14 @@ const style = StyleSheet.create({
         backgroundColor: 'white',
         elevation: 4,
         borderRadius: 8,
-        width: width / 2 - 27,
+        width: width / 1.1,
         marginRight: 18,
         marginBottom: 18,
         marginTop: 5
     },
     warpImg :{
-        height: width/2-27,
-        width: width/2-27,
+        height: width/2,
+        width: width/1.1,
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10
     },
@@ -61,7 +61,7 @@ const style = StyleSheet.create({
     },  
     wrapDisc: {
         position: 'absolute',
-        top: 10,
+        top: 20,
         backgroundColor: 'white',
         padding: 4,
     },

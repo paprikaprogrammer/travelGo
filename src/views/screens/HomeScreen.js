@@ -19,7 +19,7 @@ import axios from 'axios';
 import COLORS from '../../consts/colors';
 import places from '../../consts/places';
 import RecommendedCard from '../../views/screens/RecommendedCard'
-import PlaceCard from '../../component/PlaceCard';
+import Promo from '../../component/Promo';
 import CategoryMenu from '../../component/CategoryMenu';
 // import { useNavigation } from '@react-navigation/native';
 const {width} = Dimensions.get('screen');
@@ -95,9 +95,9 @@ const HomeScreen = ({navigation}) => {
           <CategoryMenu onPress={() => navigation.navigate('Todo')} image={require('../../assets/todo.png')} title='To Do'/>
           <CategoryMenu onPress={() => navigation.navigate('Kereta')} image={require('../../assets/kereta.png')} title='Kereta'/>
           <CategoryMenu onPress={() => navigation.navigate('Eat')} image={require('../../assets/eat.png')} title='Eat'/>
-          <CategoryMenu image={require('../../assets/event.png')} title='Event'/>
-          <CategoryMenu image={require('../../assets/mobil.png')} title='Sewa Mobil'/>
-          <CategoryMenu image={require('../../assets/promo.png')} title='Promo'/>
+          <CategoryMenu onPress={() => navigation.navigate('Event')} image={require('../../assets/event.png')} title='Event'/>
+          <CategoryMenu onPress={() => navigation.navigate('Sewa')} image={require('../../assets/mobil.png')} title='Sewa Mobil'/>
+          <CategoryMenu onPress={() => navigation.navigate('Promo')} image={require('../../assets/promo.png')} title='Promo'/>
         </View>
         <Text style={style.sectionTitle}>Tujuan Populer</Text>
         <View>
@@ -108,6 +108,9 @@ const HomeScreen = ({navigation}) => {
             data={places}
             renderItem={({item}) => <Card place={item} />}
           />
+          {/* banner promo */}
+          <Text style={style.sectionTitle}>Promo Terbaik di Tahun 2022</Text>
+          <Promo />
           {/* <PlaceCard /> */}
           <Text style={style.sectionTitle}>Rekomendasi Terbaik</Text>
           <RecommendedCard />
