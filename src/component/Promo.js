@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList, StyleSheet, ImageBackground, ActivityIndicator, Dimensions } from 'react-native';
 import Axios from 'axios';
-import COLORS from '../../consts/colors';
+import COLORS from '../consts/colors';
 import Iconmenu from 'react-native-vector-icons/Entypo';
 import Icon from 'react-native-vector-icons/AntDesign';
 const {width} = Dimensions.get('screen');
 
-export default class RecommendedCard extends Component {
+export default class Promo extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,10 +21,10 @@ export default class RecommendedCard extends Component {
     this.getRecomen()
   }
 
-  // get api user
+  // get api banner promo
   getRecomen = async () => {
     try {
-      const response = await Axios.get(`https://mocki.io/v1/814e74cf-17b8-456d-83f3-6c891d328c8f`)
+      const response = await Axios.get(`https://mocki.io/v1/61e5676b-65a6-4de4-ab07-47092de5fa84`)
       this.setState({ isError: false, isLoading: false, data: response.data })
     } catch (error) {
       this.setState({ isLoading: false, isError: true })

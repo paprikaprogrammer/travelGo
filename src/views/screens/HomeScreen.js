@@ -19,33 +19,13 @@ import axios from 'axios';
 import COLORS from '../../consts/colors';
 import places from '../../consts/places';
 import RecommendedCard from '../../views/screens/RecommendedCard'
-import PlaceCard from '../../component/PlaceCard';
+import Promo from '../../component/Promo';
+import CategoryMenu from '../../component/CategoryMenu';
+// import { useNavigation } from '@react-navigation/native';
 const {width} = Dimensions.get('screen');
 
 const HomeScreen = ({navigation}) => {
-  const categoryIcons = [
-    <Iconmenu name="aircraft" size={25} color={COLORS.primary} />,
-    <Iconmenu name="location" size={25} color={COLORS.primary} />,
-    <Iconmenu name="home" size={25} color={COLORS.primary} />,
-    <Iconmenu name="aircraft-landing" size={25} color={COLORS.primary} />,
-  ];
-
-  const ListCategories = () => {
-    return (
-      <View style={style.categoryContainer}>
-        {categoryIcons.map((icon, index) => (
-          <TouchableOpacity
-          activeOpacity={0.8}
-          onPress={() => navigation.navigate('DirectWebview')}>
-          <View  key={index} style={style.iconContainer}>
-            {icon}
-          </View>
-          </TouchableOpacity>
-        ))}
-      </View>
-    );
-  };
-
+  // const navigation = useNavigation();
   const Card = ({place}) => {
     return (
       <TouchableOpacity
@@ -96,12 +76,10 @@ const HomeScreen = ({navigation}) => {
         <View
           style={{
             backgroundColor: COLORS.primary,
-            height: 120,
+            height: 30,
             paddingHorizontal: 20,
           }}>
           <View style={{flex: 1}}>
-            <Text style={style.headerTitle}>Hallo!</Text>
-            <Text style={style.headerTitle}>Mau kemana?</Text>
             <View style={style.inputContainer}>
               <Icons name="search" size={28} />
               <TextInput
@@ -111,17 +89,29 @@ const HomeScreen = ({navigation}) => {
             </View>
           </View>
         </View>
-        <ListCategories />
+        <View style={style.categoryMenu}>
+          <CategoryMenu onPress={() => navigation.navigate('Pesawat')} image={require('../../assets/pesawat.png')} title='Pesawat'/>
+          <CategoryMenu onPress={() => navigation.navigate('Hotel')} image={require('../../assets/hotel.png')} title='Hotel'/>
+          <CategoryMenu onPress={() => navigation.navigate('Todo')} image={require('../../assets/todo.png')} title='To Do'/>
+          <CategoryMenu onPress={() => navigation.navigate('Kereta')} image={require('../../assets/kereta.png')} title='Kereta'/>
+          <CategoryMenu onPress={() => navigation.navigate('Eat')} image={require('../../assets/eat.png')} title='Eat'/>
+          <CategoryMenu onPress={() => navigation.navigate('Event')} image={require('../../assets/event.png')} title='Event'/>
+          <CategoryMenu onPress={() => navigation.navigate('Sewa')} image={require('../../assets/mobil.png')} title='Sewa Mobil'/>
+          <CategoryMenu onPress={() => navigation.navigate('Promo')} image={require('../../assets/promo.png')} title='Promo'/>
+        </View>
         <Text style={style.sectionTitle}>Tujuan Populer</Text>
         <View>
-          {/* <FlatList
+          <FlatList
             contentContainerStyle={{paddingLeft: 20}}
             horizontal
             showsHorizontalScrollIndicator={false}
             data={places}
             renderItem={({item}) => <Card place={item} />}
-          /> */}
-          <PlaceCard />
+          />
+          {/* banner promo */}
+          <Text style={style.sectionTitle}>Promo Terbaik di Tahun 2022</Text>
+          <Promo />
+          {/* <PlaceCard /> */}
           <Text style={style.sectionTitle}>Rekomendasi Terbaik</Text>
           <RecommendedCard />
         </View>
@@ -144,30 +134,16 @@ const style = StyleSheet.create({
     fontSize: 23,
   },
   inputContainer: {
-    height: 60,
+    height: 55,
     width: '100%',
     backgroundColor: COLORS.white,
     borderRadius: 10,
     position: 'absolute',
-    top: 90,
+    top: 2,
     flexDirection: 'row',
     paddingHorizontal: 20,
     alignItems: 'center',
     elevation: 12,
-  },
-  categoryContainer: {
-    marginTop: 60,
-    marginHorizontal: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  iconContainer: {
-    height: 60,
-    width: 60,
-    backgroundColor: COLORS.secondary,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
   },
   sectionTitle: {
     marginHorizontal: 20,
@@ -201,6 +177,13 @@ const style = StyleSheet.create({
     opacity: 0.5,
     backgroundColor: 'black',
     width: width
+  },
+  categoryMenu : {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 40,
+    flexWrap: 'wrap',
+    width: '100%',
   } 
 });
 export default HomeScreen;
