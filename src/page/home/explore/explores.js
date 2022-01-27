@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { 
     Text, 
     ScrollView,
@@ -9,59 +9,112 @@ import {
     Dimensions,
     View, } from 'react-native'
 import COLORS from '../../../consts/colors';
+import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 const {width} = Dimensions.get('screen');
 
 const explores = () => {
-  return (
-    <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
-      <StatusBar translucent backgroundColor={COLORS.primary} />
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View
-        style={style.containers}>
-        <View style={style.wrapTitle}>
-            <Text style={style.title}>Hore! Mari kita liburan..</Text>
-            <Text style={style.titleFav}>Tempat farovit kembali dibuka dan aman dikunjungi. Yuk, Pesan sekarang</Text>
-        </View>
-        <View style={style.wrapper}>
-            <Image style={style.warpImg} source={require('../../../assets/todo1.jpg')}></Image>
-            <View style={style.wrapBoxTxt}>
-                <View>
-                    <Text style={style.warpTxt}>Voucher Kidania</Text>
-                    <Text style={{fontSize:11}}>Bandung</Text>
+    const [loading, setLoading] = useState(true);
+    return (
+        <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
+        <StatusBar translucent backgroundColor={COLORS.primary} />
+        {loading ? (
+            <ScrollView
+            style={{flex: 1}}
+            contentContainerStyle={{alignItems: 'center'}}>
+            <SkeletonPlaceholder>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <View style={{width: 60, height: 60, borderRadius: 50}} />
+                <View style={{marginLeft: 20}}>
+                    <View style={{width: 120, height: 20, borderRadius: 4}} />
+                    <View
+                    style={{marginTop: 6, width: 80, height: 20, borderRadius: 4}}
+                    />
                 </View>
-            </View>
-        </View>
-        <View style={style.wrapper}>
-            <Image style={style.warpImg} source={require('../../../assets/todo2.jpg')}></Image>
-            <View style={style.wrapBoxTxt}>
-                <View>
-                    <Text style={style.warpTxt}>Voucher Kidania</Text>
-                    <Text style={{fontSize:11}}>Bandung</Text>
                 </View>
-            </View>
-        </View>
-        <View style={style.wrapper}>
-            <Image style={style.warpImg} source={require('../../../assets/todo3.jpg')}></Image>
-            <View style={style.wrapBoxTxt}>
-                <View>
-                    <Text style={style.warpTxt}>Voucher Kidania</Text>
-                    <Text style={{fontSize:11}}>Bandung</Text>
+                <View style={{marginTop: 10, marginBottom: 30}}>
+                <View style={{width: 300, height: 20, borderRadius: 4}} />
+                <View
+                    style={{marginTop: 6, width: 250, height: 20, borderRadius: 4}}
+                />
+                <View
+                    style={{marginTop: 6, width: 350, height: 200, borderRadius: 4}}
+                />
                 </View>
-            </View>
-        </View>
-        <View style={style.wrapper}>
-            <Image style={style.warpImg} source={require('../../../assets/todo4.jpg')}></Image>
-            <View style={style.wrapBoxTxt}>
-                <View>
-                    <Text style={style.warpTxt}>Voucher Kidania</Text>
-                    <Text style={{fontSize:11}}>Bandung</Text>
+            </SkeletonPlaceholder>
+            <SkeletonPlaceholder>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <View style={{width: 60, height: 60, borderRadius: 50}} />
+                <View style={{marginLeft: 20}}>
+                    <View style={{width: 120, height: 20, borderRadius: 4}} />
+                    <View
+                    style={{marginTop: 6, width: 80, height: 20, borderRadius: 4}}
+                    />
                 </View>
-            </View>
-        </View>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  )
+                </View>
+                <View style={{marginTop: 10, marginBottom: 30}}>
+                <View style={{width: 300, height: 20, borderRadius: 4}} />
+                <View
+                    style={{marginTop: 6, width: 250, height: 20, borderRadius: 4}}
+                />
+                <View
+                    style={{marginTop: 6, width: 350, height: 200, borderRadius: 4}}
+                />
+                </View>
+            </SkeletonPlaceholder>
+            </ScrollView>
+        ) : (
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <View
+                style={style.containers}>
+                <View style={style.wrapTitle}>
+                    <Text style={style.title}>Hore! Mari kita liburan..</Text>
+                    <Text style={style.titleFav}>Tempat farovit kembali dibuka dan aman dikunjungi. Yuk, Pesan sekarang</Text>
+                </View>
+                <View style={{flexDirection:'row'}}>
+                    <View style={style.wrapper}>
+                        <Image style={style.warpImg} source={require('../../../assets/todo1.jpg')}></Image>
+                        <View style={style.wrapBoxTxt}>
+                            <View>
+                                <Text style={style.warpTxt}>Voucher Kidania</Text>
+                                <Text style={{fontSize:11}}>Bandung</Text>
+                            </View>
+                        </View>
+                    </View>
+                    <View style={style.wrapper}>
+                        <Image style={style.warpImg} source={require('../../../assets/todo2.jpg')}></Image>
+                        <View style={style.wrapBoxTxt}>
+                            <View>
+                                <Text style={style.warpTxt}>Voucher Kidania</Text>
+                                <Text style={{fontSize:11}}>Bandung</Text>
+                            </View>
+                        </View>
+                    </View>
+                </View>
+                <View style={{flexDirection:'row'}}>
+                    <View style={style.wrapper}>
+                        <Image style={style.warpImg} source={require('../../../assets/todo3.jpg')}></Image>
+                        <View style={style.wrapBoxTxt}>
+                            <View>
+                                <Text style={style.warpTxt}>Voucher Kidania</Text>
+                                <Text style={{fontSize:11}}>Bandung</Text>
+                            </View>
+                        </View>
+                    </View>
+                    <View style={style.wrapper}>
+                        <Image style={style.warpImg} source={require('../../../assets/todo4.jpg')}></Image>
+                        <View style={style.wrapBoxTxt}>
+                            <View>
+                                <Text style={style.warpTxt}>Voucher Kidania</Text>
+                                <Text style={{fontSize:11}}>Bandung</Text>
+                            </View>
+                        </View>
+                    </View>
+                </View>
+                </View>
+            </ScrollView>
+        )}
+        </SafeAreaView>
+    )
 }
 
 const style = StyleSheet.create({
@@ -73,13 +126,13 @@ const style = StyleSheet.create({
     },
     containers: {
         backgroundColor: COLORS.white,
-        height: 500,
+        // height: 500,
         paddingHorizontal: 20,
         // borderTopStartRadius: 30,
         // borderTopEndRadius: 30,
-        paddingTop: 10,
+        paddingTop: 25,
         // marginTop: 40,
-        elevation: 20
+        elevation: 20,
     },
     wrapper: {
         backgroundColor: 'white',
