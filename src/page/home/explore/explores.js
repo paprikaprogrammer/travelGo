@@ -1,120 +1,102 @@
-import React, {useEffect, useState} from 'react'
-import { 
-    Text, 
-    ScrollView,
-    SafeAreaView,
-    StatusBar,
-    Image,
-    StyleSheet,
-    Dimensions,
-    View, } from 'react-native'
+import React, { Component, useState } from 'react';
+import { View, Text, FlatList, StyleSheet, ScrollView, ActivityIndicator, Dimensions, Image } from 'react-native';
+import Axios from 'axios';
 import COLORS from '../../../consts/colors';
 import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 const {width} = Dimensions.get('screen');
+// const [loading, setLoading] = useState(true);
 
-const explores = () => {
-    const [loading, setLoading] = useState(true);
+export default class RecommendedCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: {},
+      isLoading: true,
+      isError: false
+    };
+  }
+
+  componentDidMount() {
+    this.getRecomen()
+  }
+
+  getRecomen = async () => {
+    try {
+      const response = await Axios.get(`https://mocki.io/v1/d6de74a2-5ac1-4e3f-96f9-81dd94db457f`)
+      this.setState({ isError: false, isLoading: false, data: response.data })
+    } catch (error) {
+      this.setState({ isLoading: false, isError: true })
+    }
+  }
+
+  render() {
+    //  load data
+    if (this.state.isLoading) {
+      return (
+        <SkeletonPlaceholder flexDirection="row" alignItems="center">
+            <SkeletonPlaceholder.Item>
+              <SkeletonPlaceholder.Item width={355} height={160} borderRadius={10} />
+              <SkeletonPlaceholder.Item width={355} height={20} borderRadius={10} marginTop={5}></SkeletonPlaceholder.Item>
+              <SkeletonPlaceholder.Item width={355} height={20} borderRadius={10} marginTop={5} marginBottom={20}></SkeletonPlaceholder.Item>
+            </SkeletonPlaceholder.Item>
+            <SkeletonPlaceholder.Item>
+              <SkeletonPlaceholder.Item width={355} height={160} borderRadius={10} />
+              <SkeletonPlaceholder.Item width={355} height={20} borderRadius={10} marginTop={5}></SkeletonPlaceholder.Item>
+              <SkeletonPlaceholder.Item width={355} height={20} borderRadius={10} marginTop={5} marginBottom={20}></SkeletonPlaceholder.Item>
+            </SkeletonPlaceholder.Item>
+          </SkeletonPlaceholder>
+        // <View
+        //   style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}
+        // >
+        //   <ActivityIndicator size='large' color='lightgray' />
+        // </View>
+      )
+    }
+    // data no fetch
+    else if (this.state.isError) {
+      return (
+        <View
+          style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}
+        >
+          <Text>Terjadi Error Saat Memuat Data</Text>
+        </View>
+      )
+    }
+    // data finish load
     return (
-        <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
-        <StatusBar translucent backgroundColor={COLORS.primary} />
-        {loading ? (
-            <ScrollView
-            style={{flex: 1}}
-            contentContainerStyle={{alignItems: 'center'}}>
-            <SkeletonPlaceholder>
-                <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <View style={{width: 60, height: 60, borderRadius: 50}} />
-                <View style={{marginLeft: 20}}>
-                    <View style={{width: 120, height: 20, borderRadius: 4}} />
-                    <View
-                    style={{marginTop: 6, width: 80, height: 20, borderRadius: 4}}
-                    />
-                </View>
-                </View>
-                <View style={{marginTop: 10, marginBottom: 30}}>
-                <View style={{width: 300, height: 20, borderRadius: 4}} />
-                <View
-                    style={{marginTop: 6, width: 250, height: 20, borderRadius: 4}}
-                />
-                <View
-                    style={{marginTop: 6, width: 350, height: 200, borderRadius: 4}}
-                />
-                </View>
-            </SkeletonPlaceholder>
-            <SkeletonPlaceholder>
-                <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <View style={{width: 60, height: 60, borderRadius: 50}} />
-                <View style={{marginLeft: 20}}>
-                    <View style={{width: 120, height: 20, borderRadius: 4}} />
-                    <View
-                    style={{marginTop: 6, width: 80, height: 20, borderRadius: 4}}
-                    />
-                </View>
-                </View>
-                <View style={{marginTop: 10, marginBottom: 30}}>
-                <View style={{width: 300, height: 20, borderRadius: 4}} />
-                <View
-                    style={{marginTop: 6, width: 250, height: 20, borderRadius: 4}}
-                />
-                <View
-                    style={{marginTop: 6, width: 350, height: 200, borderRadius: 4}}
-                />
-                </View>
-            </SkeletonPlaceholder>
-            </ScrollView>
-        ) : (
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <View
-                style={style.containers}>
-                <View style={style.wrapTitle}>
-                    <Text style={style.title}>Hore! Mari kita liburan..</Text>
-                    <Text style={style.titleFav}>Tempat farovit kembali dibuka dan aman dikunjungi. Yuk, Pesan sekarang</Text>
-                </View>
-                <View style={{flexDirection:'row'}}>
-                    <View style={style.wrapper}>
-                        <Image style={style.warpImg} source={require('../../../assets/todo1.jpg')}></Image>
-                        <View style={style.wrapBoxTxt}>
-                            <View>
-                                <Text style={style.warpTxt}>Voucher Kidania</Text>
-                                <Text style={{fontSize:11}}>Bandung</Text>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={style.wrapper}>
-                        <Image style={style.warpImg} source={require('../../../assets/todo2.jpg')}></Image>
-                        <View style={style.wrapBoxTxt}>
-                            <View>
-                                <Text style={style.warpTxt}>Voucher Kidania</Text>
-                                <Text style={{fontSize:11}}>Bandung</Text>
-                            </View>
-                        </View>
-                    </View>
-                </View>
-                <View style={{flexDirection:'row'}}>
-                    <View style={style.wrapper}>
-                        <Image style={style.warpImg} source={require('../../../assets/todo3.jpg')}></Image>
-                        <View style={style.wrapBoxTxt}>
-                            <View>
-                                <Text style={style.warpTxt}>Voucher Kidania</Text>
-                                <Text style={{fontSize:11}}>Bandung</Text>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={style.wrapper}>
-                        <Image style={style.warpImg} source={require('../../../assets/todo4.jpg')}></Image>
-                        <View style={style.wrapBoxTxt}>
-                            <View>
-                                <Text style={style.warpTxt}>Voucher Kidania</Text>
-                                <Text style={{fontSize:11}}>Bandung</Text>
-                            </View>
-                        </View>
-                    </View>
-                </View>
-                </View>
-            </ScrollView>
-        )}
-        </SafeAreaView>
-    )
+      <View>
+         <View style={style.wrapTitle}>
+              <Text style={style.title}>Hore! Mari kita liburan..</Text>
+              <Text style={style.titleFav}>Tempat farovit kembali dibuka dan aman dikunjungi. Yuk, Pesan sekarang</Text>
+          </View>
+          <FlatList
+              contentContainerStyle={{paddingBottom: 20}}
+              showsHorizontalScrollIndicator={false}
+              horizontal
+              data={this.state.data}
+              renderItem={({ item }) =>
+              <ScrollView showsVerticalScrollIndicator={false}>
+                  <View
+                  style={style.containers}>
+                      {/* <View style={{flexDirection:'row'}}> */}
+                          <View style={style.wrapper}>
+                              <Image style={style.warpImg} source={{uri: `${item.image}`}}></Image>
+                              <View style={style.wrapBoxTxt}>
+                                  <View style={style.containTxt}>
+                                      <Text style={style.warpTxt}>{item.Voucher}</Text>
+                                      <Text style={{fontSize:11}}>{item.place}</Text>
+                                  </View>
+                              </View>
+                          </View>
+                      {/* </View> */}
+                  </View>
+              </ScrollView>
+              }
+              keyExtractor={({ id }, index) => index}
+          />
+      </View>
+    );
+  }
 }
 
 const style = StyleSheet.create({
@@ -128,24 +110,28 @@ const style = StyleSheet.create({
         backgroundColor: COLORS.white,
         // height: 500,
         paddingHorizontal: 20,
+        paddingBottom: 20,
         // borderTopStartRadius: 30,
         // borderTopEndRadius: 30,
         paddingTop: 25,
         // marginTop: 40,
         elevation: 20,
     },
+    // containTxt: {
+    //   width: width / 3 - 27,
+    // },
     wrapper: {
         backgroundColor: 'white',
         elevation: 4,
         borderRadius: 8,
-        width: width / 2 - 27,
-        marginRight: 18,
+        width: width / 2.2 - 27,
+        // marginRight: 18,
         marginBottom: 18,
         marginTop: 5
     },
     warpImg :{
-        height: width/2-27,
-        width: width/2-27,
+        height: width/2.2-27,
+        width: width/2.2-27,
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10
     },
@@ -175,7 +161,10 @@ const style = StyleSheet.create({
         padding: 4,
     },
     wrapTitle :{
-        marginVertical: 13
+        paddingVertical: 30,
+        paddingHorizontal: 20,
+        textAlign: 'center',
+        backgroundColor: COLORS.white,
     },
     title :{
         fontWeight: 'bold',
@@ -185,5 +174,3 @@ const style = StyleSheet.create({
         fontSize: 13
     }
 });
-
-export default explores

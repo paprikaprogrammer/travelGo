@@ -63,7 +63,7 @@ const HomeScreen = ({navigation}) => {
       </TouchableOpacity>
     );
   };
-
+  
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
       <StatusBar translucent={false} backgroundColor={COLORS.primary} />

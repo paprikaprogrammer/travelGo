@@ -12,20 +12,6 @@ import {
 import COLORS from '../../../consts/colors';
 
 const orders = () => {
-  render() {
-    componentDidMount() {
-        this.getRecomen()
-    }
-
-    getRecomen = async () => {
-        try {
-        const response = await Axios.get(`https://mocki.io/v1/475d2690-d114-450f-9e5a-0a2f803e1f44`)
-        this.setState({ isError: false, isLoading: false, data: response.data })
-        } catch (error) {
-        this.setState({ isLoading: false, isError: true })
-        }
-    }
-
     return (
         <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
           <StatusBar translucent={false} backgroundColor={COLORS.primary} />
@@ -34,7 +20,7 @@ const orders = () => {
           </View>
           <ScrollView showsVerticalScrollIndicator={false}>
             <View style={style.sectionContent}>
-                <Image style={style.sectionImg} source={{uri: `${item.image}`}}></Image>
+                <Image style={style.sectionImg} source={require('../../../assets/bg_order.png')}></Image>
                 <View style={style.wrapTitle}>
                     <Text style={style.title}>Hore! Mari kita liburan..</Text>
                     <Text style={style.titleFav}>Setelah memesan perjalanan, kamu bisa mengatur pesanan dan melihat E-tiketmu di sini.</Text>
@@ -49,7 +35,6 @@ const orders = () => {
           </ScrollView>
         </SafeAreaView>
       );
-  }
 };
 
 const style = StyleSheet.create({
@@ -104,6 +89,10 @@ const style = StyleSheet.create({
         marginTop: 5,
         textAlign: 'center',
         paddingHorizontal: 15
+    },
+    header:{
+        marginTop: 5,
+        textAlign: 'center',
     }
 });
 export default orders;
